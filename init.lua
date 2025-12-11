@@ -858,10 +858,15 @@ require('lazy').setup({
       },
 
       sources = {
-        { name = 'copilot', group_index = 2 },
         default = { 'lsp', 'path', 'snippets', 'lazydev' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+          copilot = {
+            name = 'copilot',
+            module = 'blink-cmp-copilot',
+            score_offset = 100,
+            async = true,
+          },
         },
       },
 
@@ -970,11 +975,21 @@ require('lazy').setup({
   },
   -- AI autocomplete
   {
-    'zbirenbaum/copilot-cmp',
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    event = 'InsertEnter',
     config = function()
-      require('copilot_cmp').setup()
+      require('copilot').setup {
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      }
     end,
   },
+
+  {
+    'giuxtaposition/blink-cmp-copilot',
+  },
+
   -- Multiline editing
   {
     'mg979/vim-visual-multi',
@@ -1006,6 +1021,11 @@ require('lazy').setup({
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
   -- you can continue same window with `<space>sr` which resumes last telescope search
 }, {
+
+  git = {
+    timeout = 300,
+  },
+
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
     -- default lazy.nvim defined nerd font icons, otherwise define a unicode icons table
