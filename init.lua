@@ -908,6 +908,18 @@ require('lazy').setup({
     end,
   },
 
+  { --Oil
+    'stevearc/oil.nvim',
+    opts = {},
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('oil').setup {
+        default_file_explorer = true,
+      }
+      vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent dir' })
+    end,
+  },
+
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
