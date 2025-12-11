@@ -858,6 +858,7 @@ require('lazy').setup({
       },
 
       sources = {
+        { name = 'copilot', group_index = 2 },
         default = { 'lsp', 'path', 'snippets', 'lazydev' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
@@ -970,7 +971,6 @@ require('lazy').setup({
   -- AI autocomplete
   {
     'zbirenbaum/copilot-cmp',
-    dependencies = { 'hrsh7th/nvim-cmp' },
     config = function()
       require('copilot_cmp').setup()
     end,
