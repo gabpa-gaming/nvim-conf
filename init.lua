@@ -194,6 +194,11 @@ vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
+--(Evil) In insert mode too
+vim.keymap.set('i', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set('i', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set('i', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set('i', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
@@ -858,7 +863,7 @@ require('lazy').setup({
       completion = {
         -- By default, you may press `<c-space>` to show the documentation.
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
-        documentation = { auto_show = false, auto_show_delay_ms = 500 },
+        documentation = { auto_show = false, auto_show_dclay_ms = 500 },
       },
 
       sources = {
@@ -911,7 +916,11 @@ require('lazy').setup({
       vim.cmd.colorscheme 'lunaperche'
     end,
   },
-
+  { --autpaits
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = true,
+  },
   { --Oil
     'stevearc/oil.nvim',
     opts = {},
